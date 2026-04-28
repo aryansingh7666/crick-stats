@@ -87,36 +87,43 @@
   .text-gradient-orange {
     background: linear-gradient(135deg, #FF9500 0%, #FF5E00 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .text-gradient-gold {
     background: linear-gradient(135deg, #FFE882 0%, #FFD700 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .text-gradient-purple {
     background: linear-gradient(135deg, #E0A7FF 0%, #BC00FF 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .text-gradient-green {
     background: linear-gradient(135deg, #82FFC9 0%, #00FF95 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .text-gradient-red {
     background: linear-gradient(135deg, #FF6B8B 0%, #FF003C 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .text-gradient-cyan {
     background: linear-gradient(135deg, #82FAFF 0%, #00F2FF 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .text-gradient-blue {
     background: linear-gradient(135deg, #66B2FF 0%, #0070FF 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 

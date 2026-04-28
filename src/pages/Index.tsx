@@ -106,11 +106,11 @@ const Index = () => {
                   className="flex items-end justify-between flex-wrap gap-6 mb-10"
                 >
                   <div>
-                    <h1 className="font-display tracking-tight text-foreground leading-[0.9]">
-                      IPL <span className="text-gradient-orange">INTELLIGENCE</span>
+                    <h1 className="font-display tracking-tight text-white leading-[0.85] text-[4.5rem] md:text-[6rem] lg:text-[7rem]">
+                      CRCK.<span className="text-gradient-orange drop-shadow-[0_0_30px_rgba(255,94,0,0.5)]">IQ</span>
                     </h1>
-                    <p className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-[0.4em] mt-3 font-bold">
-                      18 seasons · {KPIS.totalMatches} matches · infinite drama
+                    <p className="text-[9px] md:text-[11px] text-[#7A92B0] uppercase tracking-[0.6em] mt-6 font-black opacity-80">
+                      18 seasons • {KPIS.totalMatches} matches • the intelligence engine
                     </p>
                   </div>
                   <div className="hidden md:flex items-center gap-4 bg-white/5 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">

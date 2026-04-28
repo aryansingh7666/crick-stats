@@ -30,31 +30,31 @@ export const RCBBanner = () => {
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: "auto", minHeight: 44, opacity: 1 }}
         exit={{ height: 0, opacity: 0 }}
-        className="sticky top-0 z-[100] w-full overflow-hidden flex items-center py-2 border-b border-[#FF4757]/20"
+        className="sticky top-0 z-[100] w-full overflow-hidden flex items-center py-2.5 border-b border-[#FF003C]/30"
         style={{ 
-          background: "linear-gradient(90deg, #1A0005, #2D0010, #1A0005)",
+          background: "linear-gradient(90deg, #05050A 0%, #2D0010 50%, #05050A 100%)",
           position: "relative"
         }}
       >
         {/* Animated Shimmer */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <motion.div
-            animate={{ x: ["-100%", "200%"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg]"
+            animate={{ x: ["-100%", "250%"] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-30deg]"
           />
         </div>
 
         <div className="flex-1 flex items-center justify-between relative z-10 px-4 md:px-8">
           {isMobile ? (
             <div className="flex-1 overflow-hidden">
-              <div className="animate-marquee whitespace-nowrap text-[12px] font-bold tracking-widest text-[#FFD700] uppercase">
+              <div className="animate-marquee whitespace-nowrap text-[11px] font-black tracking-[0.2em] text-[#FFD700] uppercase drop-shadow-[0_0_8px_rgba(255,215,0,0.4)]">
                 RCB 🏆 CHAMPIONS 2025 • EE SALA CUP NAMDE • FIRST TITLE IN 18 YEARS 🔴 &nbsp;&nbsp;&nbsp; 
                 RCB 🏆 CHAMPIONS 2025 • EE SALA CUP NAMDE • FIRST TITLE IN 18 YEARS 🔴
               </div>
             </div>
           ) : (
-            <div className="flex-1 text-center text-sm md:text-base font-bold tracking-[0.2em] text-[#FFD700] uppercase">
+            <div className="flex-1 text-center text-xs md:text-sm font-black tracking-[0.4em] text-[#FFD700] uppercase drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
               RCB 🏆 CHAMPIONS 2025 • EE SALA CUP NAMDE • FIRST TITLE IN 18 YEARS 🔴
             </div>
           )}

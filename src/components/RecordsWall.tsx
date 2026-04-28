@@ -11,8 +11,8 @@ const records = [
     player: "Chris Gayle",
     context: "RCB vs PBKS • Bengaluru • 2013",
     detail: "66 balls • 17 sixes • 13 fours",
-    color: "#FF6B1A",
-    glow: "rgba(255,107,26,0.3)",
+    color: "#FF5E00",
+    glow: "rgba(255,94,0,0.3)",
     icon: "🏏"
   },
   {
@@ -23,8 +23,8 @@ const records = [
     player: "Sohail Tanvir",
     context: "RR vs CSK • Jaipur • 2008",
     detail: "4 overs • 0 maidens • 6 wickets",
-    color: "#0EA5E9",
-    glow: "rgba(14,165,233,0.3)",
+    color: "#0070FF",
+    glow: "rgba(0,112,255,0.3)",
     icon: "🎯"
   },
   {
@@ -35,8 +35,8 @@ const records = [
     player: "Royal Challengers Bengaluru",
     context: "vs PBKS • Bengaluru • 2013",
     detail: "Gayle 175* • Dilshan 33",
-    color: "#EC1C24",
-    glow: "rgba(236,28,36,0.3)",
+    color: "#FF003C",
+    glow: "rgba(255,0,60,0.3)",
     icon: "📊"
   },
   {
@@ -47,8 +47,8 @@ const records = [
     player: "Royal Challengers Bengaluru",
     context: "vs KKR • Kolkata • 2017",
     detail: "All out in 9.4 overs",
-    color: "#8B5CF6",
-    glow: "rgba(139,92,246,0.3)",
+    color: "#BC00FF",
+    glow: "rgba(188,0,255,0.3)",
     icon: "📉"
   },
   {
@@ -59,8 +59,8 @@ const records = [
     player: "Chris Gayle",
     context: "RCB vs PBKS • 2013",
     detail: "Part of his 175* knock",
-    color: "#F59E0B",
-    glow: "rgba(245,158,11,0.3)",
+    color: "#FFD700",
+    glow: "rgba(255,215,0,0.3)",
     icon: "6️⃣"
   },
   {
@@ -71,8 +71,8 @@ const records = [
     player: "KL Rahul",
     context: "PBKS vs DC • 2018",
     detail: "Fastest in IPL history",
-    color: "#10B981",
-    glow: "rgba(16,185,129,0.3)",
+    color: "#00FF95",
+    glow: "rgba(0,255,149,0.3)",
     icon: "⚡"
   },
   {
@@ -83,8 +83,8 @@ const records = [
     player: "Ishant Sharma",
     context: "vs MI • 2013",
     detail: "6 sixes in one over by Pollard",
-    color: "#EF4444",
-    glow: "rgba(239,68,68,0.3)",
+    color: "#FF003C",
+    glow: "rgba(255,0,60,0.3)",
     icon: "💸"
   },
   {
@@ -95,8 +95,8 @@ const records = [
     player: "Gayle & Dilshan",
     context: "RCB vs DD • 2011",
     detail: "Unbroken opening stand",
-    color: "#FF6B1A",
-    glow: "rgba(255,107,26,0.3)",
+    color: "#FF5E00",
+    glow: "rgba(255,94,0,0.3)",
     icon: "🤝"
   },
   {
@@ -107,8 +107,8 @@ const records = [
     player: "Virat Kohli",
     context: "RCB • IPL 2016",
     detail: "16 matches • 4 centuries • Avg 81.08",
-    color: "#EC1C24",
-    glow: "rgba(236,28,36,0.3)",
+    color: "#FFD700",
+    glow: "rgba(255,215,0,0.3)",
     icon: "👑"
   },
   {
@@ -119,8 +119,8 @@ const records = [
     player: "Dwayne Bravo / Harshal Patel",
     context: "CSK 2013 / RCB 2021",
     detail: "Joint record — never broken",
-    color: "#0EA5E9",
-    glow: "rgba(14,165,233,0.3)",
+    color: "#00F2FF",
+    glow: "rgba(0,242,255,0.3)",
     icon: "🏆"
   },
   {
@@ -131,8 +131,8 @@ const records = [
     player: "Virat Kohli",
     context: "RCB • 2008-2025",
     detail: "252 matches • 8 centuries",
-    color: "#F59E0B",
-    glow: "rgba(245,158,11,0.3)",
+    color: "#FFD700",
+    glow: "rgba(255,215,0,0.3)",
     icon: "⭐"
   },
   {
@@ -143,8 +143,8 @@ const records = [
     player: "Yuzvendra Chahal",
     context: "RCB/RR • 2008-2025",
     detail: "160 matches • Eco 7.59",
-    color: "#8B5CF6",
-    glow: "rgba(139,92,246,0.3)",
+    color: "#BC00FF",
+    glow: "rgba(188,0,255,0.3)",
     icon: "🎳"
   }
 ];

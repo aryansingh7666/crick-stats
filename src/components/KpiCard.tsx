@@ -17,13 +17,13 @@ interface Props {
 }
 
 const accentMap: Record<Props["accent"], { border: string; glow: string; text: string }> = {
-  orange: { border: "border-[#FF6B1A]", glow: "hover:shadow-[0_0_30px_rgba(255,107,26,0.3)]", text: "text-gradient-orange" },
-  blue:   { border: "border-[#4F8EF7]", glow: "hover:shadow-[0_0_30px_rgba(79,142,247,0.3)]",  text: "text-gradient-blue" },
-  green:  { border: "border-[#00D9A3]", glow: "hover:shadow-[0_0_30px_rgba(0,217,163,0.3)]",   text: "text-gradient-green" },
-  purple: { border: "border-[#A855F7]", glow: "hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]",  text: "text-gradient-purple" },
-  gold:   { border: "border-[#FFB800]", glow: "hover:shadow-[0_0_30px_rgba(255,184,0,0.3)]",   text: "text-gradient-gold" },
-  pink:   { border: "border-[#FF4757]", glow: "hover:shadow-[0_0_30px_rgba(255,71,87,0.3)]",   text: "text-gradient-red" },
-  cyan:   { border: "border-[#00D4FF]", glow: "hover:shadow-[0_0_30px_rgba(0,212,255,0.3)]",   text: "text-gradient-cyan" },
+  orange: { border: "border-[#FF5E00]", glow: "hover:shadow-[0_0_40px_rgba(255,94,0,0.4)]", text: "text-gradient-orange" },
+  blue:   { border: "border-[#0070FF]", glow: "hover:shadow-[0_0_40px_rgba(0,112,255,0.3)]",  text: "text-gradient-blue" },
+  green:  { border: "border-[#00FF95]", glow: "hover:shadow-[0_0_40px_rgba(0,255,149,0.3)]",   text: "text-gradient-green" },
+  purple: { border: "border-[#BC00FF]", glow: "hover:shadow-[0_0_40px_rgba(188,0,255,0.3)]",  text: "text-gradient-purple" },
+  gold:   { border: "border-[#FFD700]", glow: "hover:shadow-[0_0_40px_rgba(255,215,0,0.3)]",   text: "text-gradient-gold" },
+  pink:   { border: "border-[#FF003C]", glow: "hover:shadow-[0_0_40px_rgba(255,0,60,0.3)]",    text: "text-gradient-red" },
+  cyan:   { border: "border-[#00F2FF]", glow: "hover:shadow-[0_0_40px_rgba(0,242,255,0.4)]",   text: "text-gradient-cyan" },
 };
 
 export const KpiCard = ({

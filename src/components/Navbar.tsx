@@ -32,7 +32,7 @@ export const Navbar = ({ active, onChange, onOpenFilters }: Props) => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="sticky top-0 z-50 bg-background/40 backdrop-blur-2xl border-b border-white/5"
+      className="sticky top-0 z-50 bg-[#FDFBD4]/40 backdrop-blur-2xl border-b border-purple-100"
     >
       <div className="h-16 lg:h-20 px-4 lg:px-8 flex items-center justify-between gap-4">
         {/* Logo */}
@@ -41,7 +41,7 @@ export const Navbar = ({ active, onChange, onOpenFilters }: Props) => {
             <div className="absolute inset-0 bg-primary blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
             <CricketBall size={window.innerWidth < 768 ? 28 : 36} />
           </div>
-          <div className="font-display text-[1.1rem] lg:text-3xl tracking-tighter text-gradient-orange leading-none">
+          <div className="font-display text-[1.1rem] lg:text-3xl tracking-tighter text-gradient-lavender leading-none">
             CRCK<span className="text-foreground">.</span>IQ
           </div>
         </div>
@@ -57,14 +57,14 @@ export const Navbar = ({ active, onChange, onOpenFilters }: Props) => {
                 onClick={() => onChange(t.id)}
                 className={`relative px-5 py-2.5 rounded-full text-[11px] uppercase tracking-widest font-black transition-all duration-300 flex items-center gap-2.5 ${
                   isActive
-                    ? "text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white"
+                    : "text-text-muted hover:text-primary"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="active-pill"
-                    className="absolute inset-0 rounded-full bg-gradient-orange shadow-[0_0_30px_rgba(255,107,26,0.5)]"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-[#CF6DFC] to-[#C1BFFF] shadow-[0_4px_20px_rgba(207,109,252,0.3)]"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -107,7 +107,7 @@ export const Navbar = ({ active, onChange, onOpenFilters }: Props) => {
       </div>
 
       {/* Gradient line */}
-      <div className="h-[2px] bg-gradient-rainbow opacity-80" />
+      <div className="h-[2px] bg-gradient-to-r from-[#CF6DFC] via-[#BDB96A] to-[#C1BFFF] opacity-60" />
 
       {/* Full Screen Mobile Menu */}
       <AnimatePresence>
@@ -117,13 +117,13 @@ export const Navbar = ({ active, onChange, onOpenFilters }: Props) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed inset-y-0 right-0 w-[95%] bg-[#080C14] z-[100] border-l border-white/10 shadow-2xl md:hidden"
+            className="fixed inset-y-0 right-0 w-[95%] bg-[#FDFBD4] z-[100] border-l border-purple-100 shadow-2xl md:hidden"
           >
             <div className="flex flex-col h-full p-6">
               <div className="flex items-center justify-between mb-10">
                 <div className="flex items-center gap-3">
                   <CricketBall size={32} />
-                  <div className="font-display text-2xl text-gradient-orange">CRCK.IQ</div>
+                  <div className="font-display text-2xl text-gradient-lavender">CRCK.IQ</div>
                 </div>
                 <button 
                   onClick={() => setIsMenuOpen(false)}
@@ -144,8 +144,8 @@ export const Navbar = ({ active, onChange, onOpenFilters }: Props) => {
                         onChange(t.id);
                         setIsMenuOpen(false);
                       }}
-                      className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl transition-all border-b border-[#1E2D45] ${
-                        isActive ? "bg-primary/10 text-primary border-primary/20" : "text-foreground/80"
+                      className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl transition-all border-b border-purple-50 ${
+                        isActive ? "bg-primary/10 text-primary border-primary/20 shadow-sm" : "text-foreground/80"
                       }`}
                     >
                       <Icon size={24} className={isActive ? "text-primary" : "text-muted-foreground"} />

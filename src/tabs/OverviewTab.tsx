@@ -54,7 +54,7 @@ export const OverviewTab = () => {
                   key={c.year}
                   onClick={() => setActiveYear(c.year)}
                   className={`w-full flex items-center gap-4 p-3 rounded-xl border transition-all ${
-                    isActive ? "bg-primary/10 border-primary shadow-[0_0_15px_rgba(255,107,26,0.2)]" : "bg-white/5 border-white/5"
+                    isActive ? "bg-primary/20 border-primary shadow-[0_4px_15px_rgba(207,109,252,0.15)]" : "bg-white border-purple-50"
                   }`}
                 >
                   <div className="w-12 text-left font-mono text-sm font-bold text-muted-foreground">{c.year}</div>
@@ -88,8 +88,8 @@ export const OverviewTab = () => {
                   >
                     <div
                       className={`h-12 w-12 grid place-items-center rounded-full border-2 transition-all ${
-                        isActive ? "scale-110 shadow-[0_0_20px_rgba(255,107,26,0.6)]" : "group-hover:scale-110"
-                      } ${isRCB2025 ? "animate-pulse shadow-[0_0_25px_#EC1C24]" : ""}`}
+                      isActive ? "scale-110 shadow-[0_8px_20px_rgba(207,109,252,0.3)]" : "group-hover:scale-110"
+                    } ${isRCB2025 ? "animate-pulse shadow-[0_0_25px_#EC1C24]" : ""}`}
                       style={{
                         background: isRCB2025 ? "#EC1C2433" : `${team.color}22`,
                         borderColor: isRCB2025 ? "#EC1C24" : isActive ? "hsl(var(--primary))" : team.color,
@@ -162,7 +162,7 @@ export const OverviewTab = () => {
               {titleData.map((t) => (
                 <div key={t.code} className="flex items-center gap-4">
                   <div className="w-10 text-xs font-bold text-muted-foreground">{t.short}</div>
-                  <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden">
+                  <div className="flex-1 h-3 bg-purple-50 rounded-full overflow-hidden">
                     <motion.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: `${(t.titles / 5) * 100}%` }}
@@ -211,15 +211,15 @@ export const OverviewTab = () => {
               <AreaChart data={SEASON_MATCHES}>
                 <defs>
                   <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#FF6B1A" stopOpacity={0.6} />
-                    <stop offset="100%" stopColor="#FF6B1A" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#CF6DFC" stopOpacity={0.6} />
+                    <stop offset="100%" stopColor="#CF6DFC" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                 <XAxis dataKey="year" stroke="hsl(var(--muted-foreground))" fontSize={isMobile ? 9 : 11} tick={{ angle: isMobile ? -45 : 0, textAnchor: isMobile ? 'end' : 'middle' } as any} />
                 <YAxis stroke="hsl(var(--muted-foreground))" fontSize={isMobile ? 9 : 11} />
                 <Tooltip content={<ChartTooltip />} trigger="click" />
-                <Area type="monotone" dataKey="matches" stroke="#FF6B1A" strokeWidth={2.5} fill="url(#areaGrad)" animationDuration={isMobile ? 400 : 1400} />
+                <Area type="monotone" dataKey="matches" stroke="#CF6DFC" strokeWidth={2.5} fill="url(#areaGrad)" animationDuration={isMobile ? 400 : 1400} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -234,8 +234,8 @@ export const OverviewTab = () => {
                 <YAxis stroke="hsl(var(--muted-foreground))" fontSize={isMobile ? 9 : 11} tickFormatter={(v) => `${Math.round(v * 100)}%`} />
                 <Tooltip content={<ChartTooltip />} trigger="click" />
                 <Legend wrapperStyle={{ fontSize: 10 }} verticalAlign="bottom" />
-                <Bar dataKey="batFirst" stackId="a" fill="#FF6B1A" name="Bat First" />
-                <Bar dataKey="chase" stackId="a" fill="#0EA5E9" name="Chase" />
+                <Bar dataKey="batFirst" stackId="a" fill="#CF6DFC" name="Bat First" />
+                <Bar dataKey="chase" stackId="a" fill="#BDB96A" name="Chase" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -250,9 +250,9 @@ export const OverviewTab = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="rounded-xl bg-gradient-to-br from-[#EC1C24] to-[#8B0000] p-4 text-white shadow-xl flex flex-col justify-center border-2 border-[#FFD700] relative overflow-hidden"
+          className="rounded-xl bg-gradient-to-br from-[#CF6DFC] to-[#9B4DE0] p-4 text-white shadow-xl flex flex-col justify-center border-2 border-purple-100 relative overflow-hidden"
         >
-          <div className="absolute -right-4 -bottom-4 opacity-20">
+          <div className="absolute -right-4 -bottom-4 opacity-10">
             <Trophy className="h-24 w-24 text-white" />
           </div>
           <div className="relative z-10">

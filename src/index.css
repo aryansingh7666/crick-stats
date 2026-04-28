@@ -4,30 +4,30 @@
 
 @layer base {
   :root {
-    /* CRCK.IQ — Cyber-Luxe Obsidian Theme */
-    --bg-primary: #05050A;
-    --bg-surface: #0A0A16;
-    --bg-card: #111122;
-    --bg-card-hover: #16162D;
+    /* Lavender Fields — Dreamy & Whimsical Theme */
+    --bg-primary: #FDFBD4;
+    --bg-surface: #F8F7FF;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F1EFFF;
     
-    --foreground: 210 40% 98%;
-    --text-muted: 215 20% 65%;
+    --foreground: 284 30% 15%; /* Deep Muted Purple */
+    --text-muted: 284 15% 45%;
 
-    --primary: 22 100% 50%;
+    --primary: 281 97% 71%; /* #CF6DFC Lavender */
     --primary-foreground: 0 0% 100%;
 
-    --accent-orange: #FF5E00;
-    --accent-blue: #0070FF;
-    --accent-green: #00FF95;
-    --accent-purple: #BC00FF;
-    --accent-gold: #FFD700;
-    --accent-red: #FF003C;
-    --accent-cyan: #00F2FF;
+    --accent-lavender: #CF6DFC;
+    --accent-purple: #C1BFFF;
+    --accent-green: #BDB96A;
+    --accent-cream: #FDFBD4;
+    --accent-gold: #D4CD81;
+    --accent-pink: #FFB3E6;
+    --accent-cyan: #A3E9FF;
 
-    --border: rgba(255, 255, 255, 0.05);
-    --border-accent: rgba(255, 94, 0, 0.4);
+    --border: rgba(207, 109, 252, 0.1);
+    --border-accent: rgba(207, 109, 252, 0.3);
 
-    --radius: 24px;
+    --radius: 28px;
   }
 }
 
@@ -36,9 +36,9 @@
   html, body, #root {
     background-color: var(--bg-primary);
     background-image: 
-      radial-gradient(at 0% 0%, rgba(255, 94, 0, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(0, 242, 255, 0.05) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(188, 0, 255, 0.05) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(193, 191, 255, 0.4) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(207, 109, 252, 0.2) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(189, 185, 106, 0.15) 0px, transparent 50%);
     color: hsl(var(--foreground));
     min-height: 100vh;
     scroll-behavior: smooth;
@@ -52,76 +52,64 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    text-shadow: 0 0 40px rgba(255, 94, 0, 0.3);
+    text-shadow: 0 4px 20px rgba(207, 109, 252, 0.15);
   }
 }
 
 @layer utilities {
-  /* High-Fidelity Glassmorphism */
+  /* Dreamy "Frosted" Glassmorphism */
   .bg-glass {
     background: linear-gradient(
       165deg,
-      rgba(255, 255, 255, 0.04) 0%,
-      rgba(255, 255, 255, 0.01) 100%
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.4) 100%
     );
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(207, 109, 252, 0.15);
     border-radius: var(--radius);
     box-shadow: 
-      0 10px 40px -10px rgba(0, 0, 0, 0.5),
-      inset 0 1px 1px rgba(255, 255, 255, 0.03);
+      0 10px 40px -10px rgba(207, 109, 252, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.8);
   }
 
   .bg-glass-hover {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .bg-glass-hover:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
-    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(207, 109, 252, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 25px 60px -15px rgba(207, 109, 252, 0.2);
   }
 
-  /* Premium Gradients */
-  .text-gradient-orange {
-    background: linear-gradient(135deg, #FF9500 0%, #FF5E00 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .text-gradient-gold {
-    background: linear-gradient(135deg, #FFE882 0%, #FFD700 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  /* Whimsical Gradients */
   .text-gradient-purple {
-    background: linear-gradient(135deg, #E0A7FF 0%, #BC00FF 100%);
+    background: linear-gradient(135deg, #CF6DFC 0%, #9B4DE0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-gradient-lavender {
+    background: linear-gradient(135deg, #CF6DFC 0%, #C1BFFF 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .text-gradient-green {
-    background: linear-gradient(135deg, #82FFC9 0%, #00FF95 100%);
+    background: linear-gradient(135deg, #BDB96A 0%, #908C4A 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .text-gradient-red {
-    background: linear-gradient(135deg, #FF6B8B 0%, #FF003C 100%);
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D4CD81 0%, #BDB96A 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  .text-gradient-cyan {
-    background: linear-gradient(135deg, #82FAFF 0%, #00F2FF 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .text-gradient-blue {
-    background: linear-gradient(135deg, #66B2FF 0%, #0070FF 100%);
+  .text-gradient-cream {
+    background: linear-gradient(135deg, #FDFBD4 0%, #EBE8B0 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -130,12 +118,12 @@
   .shimmer {
     background: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.02) 0%,
-      rgba(255, 255, 255, 0.06) 50%,
-      rgba(255, 255, 255, 0.02) 100%
+      rgba(207, 109, 252, 0.02) 0%,
+      rgba(207, 109, 252, 0.08) 50%,
+      rgba(207, 109, 252, 0.02) 100%
     );
     background-size: 200% 100%;
-    animation: shimmer 2s infinite linear;
+    animation: shimmer 2.5s infinite linear;
   }
 
   @keyframes shimmer {
@@ -143,15 +131,15 @@
     100% { background-position: 200% 0; }
   }
 
-  .font-display { font-family: 'Bebas Neue', Impact, sans-serif; letter-spacing: 0.08em; }
+  .font-display { font-family: 'Outfit', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
   .font-mono { font-family: 'JetBrains Mono', monospace; letter-spacing: -0.02em; }
   .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; letter-spacing: -0.01em; }
 
   .bg-pitch-pattern {
     background-image:
-      radial-gradient(ellipse at center, transparent 60%, rgba(255,94,0,0.03) 100%),
-      repeating-linear-gradient(0deg, transparent 0 49px, rgba(255,255,255,0.02) 49px 50px),
-      repeating-linear-gradient(90deg, transparent 0 49px, rgba(255,255,255,0.02) 49px 50px);
+      radial-gradient(ellipse at center, transparent 60%, rgba(207,109,252,0.05) 100%),
+      repeating-linear-gradient(0deg, transparent 0 49px, rgba(189,185,106,0.1) 49px 50px),
+      repeating-linear-gradient(90deg, transparent 0 49px, rgba(189,185,106,0.1) 49px 50px);
     background-size: 100% 100%, 50px 50px, 50px 50px;
   }
 }
@@ -166,6 +154,7 @@
 
 /* Custom Nav Active State */
 .nav-active {
-  color: var(--accent-orange);
-  filter: drop-shadow(0 0 8px rgba(255, 94, 0, 0.6));
+  color: #CF6DFC;
+  filter: drop-shadow(0 0 12px rgba(207, 109, 252, 0.4));
 }
+

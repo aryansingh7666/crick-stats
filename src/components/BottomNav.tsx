@@ -20,9 +20,9 @@ export const BottomNav = ({ active, onChange }: Props) => {
   return (
     <>
       {/* Subtle gradient above nav */}
-      <div className="md:hidden fixed bottom-[64px] left-0 right-0 h-16 bg-gradient-to-t from-[#05050A]/90 to-transparent pointer-events-none z-40" />
+      <div className="md:hidden fixed bottom-[64px] left-0 right-0 h-16 bg-gradient-to-t from-[#FDFBD4]/90 to-transparent pointer-events-none z-40" />
       
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 h-[64px] bg-[#05050A]/95 backdrop-blur-[24px] border-t border-white/5 z-50 px-2">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 h-[64px] bg-[#F8F7FF]/90 backdrop-blur-[24px] border-t border-purple-100 z-50 px-2">
         <div className="flex items-center justify-between h-full max-w-md mx-auto">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
@@ -35,7 +35,7 @@ export const BottomNav = ({ active, onChange }: Props) => {
               >
                 <motion.div
                   animate={{ scale: isActive ? 1.15 : 1, y: isActive ? -3 : 0 }}
-                  className={isActive ? "text-[#FF5E00] drop-shadow-[0_0_12px_rgba(255,94,0,0.8)]" : "text-white/20"}
+                  className={isActive ? "text-[#CF6DFC] drop-shadow-[0_0_12px_rgba(207,109,252,0.6)]" : "text-purple-300"}
                 >
                   <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
                 </motion.div>
@@ -43,13 +43,13 @@ export const BottomNav = ({ active, onChange }: Props) => {
                 {isActive && (
                   <motion.div 
                     layoutId="activeDot"
-                    className="absolute bottom-1.5 w-1 h-1 bg-[#FF5E00] rounded-full shadow-[0_0_12px_#FF5E00]" 
+                    className="absolute bottom-1.5 w-1 h-1 bg-[#CF6DFC] rounded-full shadow-[0_0_12px_#CF6DFC]" 
                   />
                 )}
 
                 <span 
                   className={`text-[7px] mt-1.5 font-black uppercase tracking-[0.2em] transition-colors duration-300 ${
-                    isActive ? "text-[#FF5E00]" : "text-white/20"
+                    isActive ? "text-[#CF6DFC]" : "text-purple-300"
                   }`}
                 >
                   {item.label}

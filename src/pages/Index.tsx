@@ -106,10 +106,10 @@ const Index = () => {
                   className="flex items-end justify-between flex-wrap gap-6 mb-10"
                 >
                   <div>
-                    <h1 className="font-display tracking-tight text-white leading-[0.85] text-[4.5rem] md:text-[6rem] lg:text-[7rem]">
-                      CRCK.<span className="text-gradient-orange drop-shadow-[0_0_30px_rgba(255,94,0,0.5)]">IQ</span>
+                    <h1 className="font-display tracking-tight text-foreground leading-[0.85] text-[4.5rem] md:text-[6rem] lg:text-[7rem]">
+                      CRCK.<span className="text-gradient-lavender drop-shadow-[0_4px_30px_rgba(207,109,252,0.3)]">IQ</span>
                     </h1>
-                    <p className="text-[9px] md:text-[11px] text-[#7A92B0] uppercase tracking-[0.6em] mt-6 font-black opacity-80">
+                    <p className="text-[9px] md:text-[11px] text-text-muted uppercase tracking-[0.6em] mt-6 font-black opacity-80">
                       18 seasons • {KPIS.totalMatches} matches • the intelligence engine
                     </p>
                   </div>
@@ -122,18 +122,18 @@ const Index = () => {
                 </motion.div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 lg:gap-4">
-                  <KpiCard icon="🏏" label="Total Matches" value={KPIS.totalMatches} accent="orange" delay={0.0}
-                    context="From 59 in 2008 to 74 in 2025 — IPL has reached record scale." />
-                  <KpiCard icon="🏆" label="Total Seasons" value={KPIS.totalSeasons} accent="gold" delay={0.05}
-                    context="18 seasons of evolution, from Tendulkar's MI to RCB's 2025 glory." contextLabel="2008–25" />
-                  <KpiCard icon="6️⃣" label="Total Sixes" value={KPIS.totalSixes} accent="purple" delay={0.10}
-                    context="Gayle owns 357 of these — the ultimate maximum machine." />
-                  <KpiCard icon="🎯" label="Highest Score" value={287} rawText="287" accent="green" delay={0.15}
-                    context={<>SRH vs RCB, 2024 — A historic onslaught of 287/3.</>} contextLabel="One innings" />
-                  <KpiCard icon="👑" label="Most Titles" value={5} rawText="5" accent="pink" delay={0.20}
-                    context="MI & CSK lead the table with 5 titles each. RCB joined the list in 2025." contextLabel="MI & CSK" />
-                  <KpiCard icon="⚡" label="Most Runs" value={KPIS.mostRuns.runs} accent="cyan" delay={0.25}
-                    context="Virat Kohli — RCB's one-club legend, 8,100+ runs and counting." contextLabel="V. Kohli" />
+                    <KpiCard icon="🏏" label="Total Matches" value={KPIS.totalMatches} accent="purple" delay={0.0}
+                      context="From 59 in 2008 to 74 in 2025 — IPL has reached record scale." />
+                    <KpiCard icon="🏆" label="Total Seasons" value={KPIS.totalSeasons} accent="gold" delay={0.05}
+                      context="18 seasons of evolution, from Tendulkar's MI to RCB's 2025 glory." contextLabel="2008–25" />
+                    <KpiCard icon="6️⃣" label="Total Sixes" value={KPIS.totalSixes} accent="lavender" delay={0.10}
+                      context="Gayle owns 357 of these — the ultimate maximum machine." />
+                    <KpiCard icon="🎯" label="Highest Score" value={287} rawText="287" accent="green" delay={0.15}
+                      context={<>SRH vs RCB, 2024 — A historic onslaught of 287/3.</>} contextLabel="One innings" />
+                    <KpiCard icon="👑" label="Most Titles" value={5} rawText="5" accent="pink" delay={0.20}
+                      context="MI & CSK lead the table with 5 titles each. RCB joined the list in 2025." contextLabel="MI & CSK" />
+                    <KpiCard icon="⚡" label="Most Runs" value={KPIS.mostRuns.runs} accent="cyan" delay={0.25}
+                      context="Virat Kohli — RCB's one-club legend, 8,100+ runs and counting." contextLabel="V. Kohli" />
                 </div>
               </div>
             </section>
@@ -171,10 +171,10 @@ const Index = () => {
 
         {/* Mobile Filter Bottom Sheet */}
         <Sheet open={isFilterSheetOpen} onOpenChange={setIsFilterSheetOpen}>
-          <SheetContent side="bottom" className="h-[85%] bg-[#0F1520] border-t border-white/10 rounded-t-[16px] p-0 overflow-hidden flex flex-col">
-            <div className="w-12 h-1.5 bg-white/20 rounded-full mx-auto mt-3 shrink-0" />
+          <SheetContent side="bottom" className="h-[85%] bg-[#F8F7FF] border-t border-purple-200 rounded-t-[32px] p-0 overflow-hidden flex flex-col">
+            <div className="w-12 h-1.5 bg-purple-200 rounded-full mx-auto mt-3 shrink-0" />
             <SheetHeader className="p-6 pb-2">
-              <SheetTitle className="text-gradient-orange font-display text-2xl">FILTERS</SheetTitle>
+              <SheetTitle className="text-gradient-lavender font-display text-2xl">FILTERS</SheetTitle>
             </SheetHeader>
             <div className="flex-1 overflow-y-auto p-6 pt-2 pb-32">
               <FilterControls 
@@ -184,16 +184,16 @@ const Index = () => {
                 matchType={matchType} setMatchType={setMatchType}
               />
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-[#0F1520] border-t border-white/5 flex gap-3">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-white/80 backdrop-blur-md border-t border-purple-100 flex gap-3">
               <Button 
                 variant="outline" 
-                className="flex-1 h-12 border-white/10 text-muted-foreground"
+                className="flex-1 h-12 border-purple-100 text-muted-foreground bg-white"
                 onClick={resetFilters}
               >
                 RESET
               </Button>
               <Button 
-                className="flex-[2] h-12 bg-gradient-orange text-white font-bold"
+                className="flex-[2] h-12 bg-gradient-to-r from-[#CF6DFC] to-[#C1BFFF] text-white font-bold shadow-lg shadow-purple-200"
                 onClick={() => setIsFilterSheetOpen(false)}
               >
                 APPLY FILTERS

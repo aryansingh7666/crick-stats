@@ -9,7 +9,7 @@ interface Props {
   suffix?: string;
   prefix?: string;
   decimals?: number;
-  accent: "orange" | "blue" | "green" | "purple" | "gold" | "pink" | "cyan";
+  accent: "orange" | "blue" | "green" | "purple" | "gold" | "pink" | "cyan" | "lavender";
   context?: ReactNode;
   delay?: number;
   rawText?: string; // override numeric — e.g. "264"
@@ -24,6 +24,7 @@ const accentMap: Record<Props["accent"], { border: string; glow: string; text: s
   gold:   { border: "border-[#D4CD81]", glow: "hover:shadow-[0_10px_40px_rgba(212,205,129,0.2)]",   text: "text-gradient-gold" },
   pink:   { border: "border-[#FFB3E6]", glow: "hover:shadow-[0_10px_40px_rgba(255,179,230,0.2)]",    text: "text-gradient-purple" },
   cyan:   { border: "border-[#A3E9FF]", glow: "hover:shadow-[0_10px_40px_rgba(163,233,255,0.2)]",   text: "text-gradient-lavender" },
+  lavender: { border: "border-[#CF6DFC]", glow: "hover:shadow-[0_10px_40px_rgba(207,109,252,0.2)]", text: "text-gradient-lavender" },
 };
 
 export const KpiCard = ({

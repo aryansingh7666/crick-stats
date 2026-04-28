@@ -9,7 +9,7 @@ interface Props {
   suffix?: string;
   prefix?: string;
   decimals?: number;
-  accent: "orange" | "blue" | "green" | "purple" | "gold" | "pink";
+  accent: "orange" | "blue" | "green" | "purple" | "gold" | "pink" | "cyan";
   context?: ReactNode;
   delay?: number;
   rawText?: string; // override numeric — e.g. "264"
@@ -17,12 +17,13 @@ interface Props {
 }
 
 const accentMap: Record<Props["accent"], { border: string; glow: string; text: string }> = {
-  orange: { border: "border-primary",   glow: "group-hover:shadow-[0_0_40px_rgba(255,107,26,0.3)]", text: "text-gradient-orange" },
-  blue:   { border: "border-secondary", glow: "group-hover:shadow-[0_0_40px_rgba(0,255,255,0.3)]",  text: "text-gradient-blue" },
-  green:  { border: "border-success",   glow: "group-hover:shadow-[0_0_40px_rgba(0,255,0,0.3)]",   text: "text-success" },
-  purple: { border: "border-[#8B5CF6]", glow: "group-hover:shadow-[0_0_40px_rgba(139,92,246,0.3)]",  text: "text-[#8B5CF6]" },
-  gold:   { border: "border-gold",      glow: "group-hover:shadow-[0_0_40px_rgba(255,215,0,0.3)]",  text: "text-gold" },
-  pink:   { border: "border-[#EA1A85]", glow: "group-hover:shadow-[0_0_40px_rgba(234,26,133,0.3)]",  text: "text-[#EA1A85]" },
+  orange: { border: "border-[#FF6B1A]", glow: "hover:shadow-[0_0_30px_rgba(255,107,26,0.3)]", text: "text-gradient-orange" },
+  blue:   { border: "border-[#4F8EF7]", glow: "hover:shadow-[0_0_30px_rgba(79,142,247,0.3)]",  text: "text-gradient-blue" },
+  green:  { border: "border-[#00D9A3]", glow: "hover:shadow-[0_0_30px_rgba(0,217,163,0.3)]",   text: "text-gradient-green" },
+  purple: { border: "border-[#A855F7]", glow: "hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]",  text: "text-gradient-purple" },
+  gold:   { border: "border-[#FFB800]", glow: "hover:shadow-[0_0_30px_rgba(255,184,0,0.3)]",   text: "text-gradient-gold" },
+  pink:   { border: "border-[#FF4757]", glow: "hover:shadow-[0_0_30px_rgba(255,71,87,0.3)]",   text: "text-gradient-red" },
+  cyan:   { border: "border-[#00D4FF]", glow: "hover:shadow-[0_0_30px_rgba(0,212,255,0.3)]",   text: "text-gradient-cyan" },
 };
 
 export const KpiCard = ({
@@ -56,7 +57,7 @@ export const KpiCard = ({
       >
         {/* FRONT */}
         <div
-          className={`absolute inset-0 [backface-visibility:hidden] rounded-2xl bg-glass border-t-2 ${a.border} p-3.5 md:p-5 transition-all duration-500 group-hover:bg-card/90 lg:group-hover:-translate-y-2 ${a.glow} shadow-card overflow-hidden`}
+          className={`absolute inset-0 [backface-visibility:hidden] rounded-2xl bg-glass border-t-2 ${a.border} p-3.5 md:p-5 transition-all duration-300 group-hover:bg-card/90 lg:group-hover:-translate-y-2 ${a.glow} overflow-hidden`}
         >
           <div className="flex items-start justify-between">
             <span className="text-xl md:text-2xl">{icon}</span>

@@ -18,10 +18,10 @@ const QUESTIONS = [
     explanation: "Rajasthan Royals, led by Shane Warne, defeated CSK in the final to win the inaugural title."
   },
   {
-    question: "Who is the only player to have won 5 IPL titles as captain?",
-    options: ["MS Dhoni", "Rohit Sharma", "Hardik Pandya", "Gautam Gambhir"],
+    question: "Who led Mumbai Indians to all 5 of their IPL titles between 2013 and 2020?",
+    options: ["MS Dhoni", "Rohit Sharma", "Hardik Pandya", "Sachin Tendulkar"],
     answer: 1,
-    explanation: "Rohit Sharma led Mumbai Indians to titles in 2013, 2015, 2017, 2019, and 2020."
+    explanation: "Rohit Sharma led Mumbai Indians to titles in 2013, 2015, 2017, 2019, and 2020, becoming the first captain to reach 5 titles."
   }
 ];
 

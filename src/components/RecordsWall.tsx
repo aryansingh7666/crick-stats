@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { TeamBadge } from "./TeamBadge";
 
 const records = [
   {
@@ -150,6 +151,27 @@ const records = [
 
 const categories = ["ALL", "BATTING", "BOWLING", "TEAM", "SEASON"];
 
+const RenderContext = ({ text }: { text: string }) => {
+  const parts = text.split(" ");
+  return (
+    <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[10px] md:text-[0.75rem] text-[#7A92B0] font-bold uppercase tracking-wider">
+      {parts.map((word, i) => {
+        const cleanWord = word.replace(/[^A-Z]/g, "");
+        const isTeam = ["MI", "CSK", "KKR", "RCB", "SRH", "DC", "RR", "PBKS", "GT", "LSG", "DCH"].includes(cleanWord);
+        if (isTeam) {
+          return (
+            <div key={i} className="flex items-center gap-1">
+              <TeamBadge code={cleanWord} size={16} />
+              {word !== cleanWord && <span>{word.replace(cleanWord, "")}</span>}
+            </div>
+          );
+        }
+        return <span key={i}>{word}</span>;
+      })}
+    </div>
+  );
+};
+
 export const RecordsWall = () => {
   const [filter, setFilter] = useState("ALL");
   const [isMobile, setIsMobile] = useState(false);
@@ -231,9 +253,7 @@ export const RecordsWall = () => {
                 <div className="text-lg md:text-[1.1rem] font-bold text-white mt-4 md:mt-5 truncate">
                   {r.player}
                 </div>
-                <div className="text-[10px] md:text-[0.75rem] text-[#7A92B0] font-bold uppercase tracking-wider">
-                  {r.context}
-                </div>
+                <RenderContext text={r.context} />
               </div>
 
               <div className="pt-3 md:pt-4 border-t border-white/5">

@@ -2,7 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
 import { H2H, RECENT_FORM, TEAMS, TEAM_BY_CODE, VENUES } from "@/data/ipl";
 import { CricketBall } from "@/components/CricketBall";
-import { Sparkles, Zap, MapPin, TrendingUp, Coins, CheckCircle2, ChevronRight } from "lucide-react";
+import { TeamBadge } from "@/components/TeamBadge";
+import { Sparkles, Zap, MapPin, TrendingUp, Coins, CheckCircle2, ChevronRight, Swords } from "lucide-react";
 
 type Decision = "Bat" | "Field";
 
@@ -101,7 +102,7 @@ export const PredictorTab = () => {
                     <button key={t} onClick={() => setTossWinner(t)}
                       className={`p-2.5 md:p-3 rounded-xl border-2 transition-all flex items-center gap-2 ${active ? "scale-[1.02]" : "border-border hover:border-primary/30"}`}
                       style={active ? { borderColor: team.color, background: team.color + "15" } : {}}>
-                      <div className="h-7 w-7 md:h-8 md:w-8 rounded-full grid place-items-center font-black text-white text-[10px]" style={{ background: team.color }}>{team.short.slice(0, 2)}</div>
+                      <TeamBadge code={t} />
                       <span className="font-bold text-xs md:text-sm">{team.short}</span>
                     </button>
                   );
@@ -222,7 +223,7 @@ const TeamCard = ({ team, setTeam, other }: { team: string; setTeam: (t: string)
   return (
     <div className="rounded-xl bg-surface/40 border border-border p-2 md:p-3 w-full" style={{ borderColor: t.color + "30" }}>
       <div className="flex items-center gap-2">
-        <div className="h-8 w-8 md:h-10 md:w-10 rounded-full grid place-items-center font-black text-white text-[10px] shrink-0" style={{ background: t.color }}>{t.short.slice(0, 2)}</div>
+        <TeamBadge code={team} />
         <select value={team} onChange={(e) => setTeam(e.target.value)} className="bg-transparent text-xs md:text-sm font-bold outline-none flex-1 cursor-pointer min-w-0">
           {TEAMS.filter((x) => x.code !== other).map((x) => <option key={x.code} value={x.code} className="bg-card">{x.short}</option>)}
         </select>

@@ -50,7 +50,12 @@ export const VenuesTab = () => {
                 </span>
               </div>
               <h4 className="font-heading text-base md:text-lg leading-tight truncate">{v.name}</h4>
-              <span className="inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full bg-card-hover text-muted-foreground font-mono">{v.city}</span>
+              <div className="flex flex-wrap items-center gap-2 mt-1">
+                <span className="inline-block text-[10px] px-2 py-0.5 rounded-full bg-card-hover text-muted-foreground font-sans">{v.city}</span>
+                {v.name.includes("Arun Jaitley") && (
+                  <span className="text-[9px] text-muted-foreground/60 italic">(formerly Feroz Shah Kotla)</span>
+                )}
+              </div>
 
               {/* Stats Grid */}
               <div className={`grid ${isMobile ? 'grid-cols-2' : 'grid-cols-3'} gap-3 md:gap-2 mt-4 text-center`}>

@@ -3,6 +3,7 @@ import { useMemo, useState, useEffect } from "react";
 import { H2H, TEAMS, TEAM_BY_CODE, VENUES } from "@/data/ipl";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Flame, Swords } from "lucide-react";
+import { TeamBadge } from "@/components/TeamBadge";
 
 export const H2HTab = () => {
   const [teamA, setTeamA] = useState<string>("MI");
@@ -87,20 +88,31 @@ export const H2HTab = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Donut */}
         <Section title="📊 Rivalry Split">
-          <div className="relative">
-            <ResponsiveContainer width="100%" height={isMobile ? 240 : 320}>
-              <PieChart>
-                <Pie data={pieData} dataKey="value" innerRadius={isMobile ? 55 : 80} outerRadius={isMobile ? 90 : 130} paddingAngle={3} animationDuration={isMobile ? 400 : 1200}>
-                  {pieData.map((d) => <Cell key={d.name} fill={d.color} stroke="hsl(var(--background))" strokeWidth={3} />)}
-                </Pie>
-                <Tooltip trigger="click" />
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="absolute inset-0 grid place-items-center pointer-events-none">
-              <div className="text-center">
-                <Swords className="h-6 w-6 text-muted-foreground mx-auto mb-1 opacity-20" />
-                <div className="text-[9px] uppercase tracking-widest text-muted-foreground">{stats.total} MTGS</div>
+          <div className="space-y-6 py-6 px-2">
+            {[ { t: teamA, p: A, w: stats.aWins }, { t: teamB, p: B, w: stats.bWins } ].map((item, idx) => (
+              <div key={item.t} className="flex items-center gap-4">
+                <div className="w-24 text-xs font-bold truncate flex items-center gap-2">
+                  <TeamBadge code={item.t} className="w-6 h-6 text-[8px]" />
+                  <span>{item.p.short}</span>
+                </div>
+                <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden relative">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${(item.w / Math.max(1, stats.total)) * 100}%` }}
+                    className="h-full rounded-full" 
+                    style={{ backgroundColor: item.p.color }} 
+                  />
+                </div>
+                <div className="w-16 text-right font-display text-sm">
+                   {item.w} <span className="text-[10px] text-muted-foreground font-sans">WINS</span>
+                </div>
               </div>
+            ))}
+            
+            <div className="pt-4 mt-2 border-t border-white/5 text-center">
+               <div className="text-[9px] uppercase tracking-[0.4em] text-muted-foreground font-black">
+                 {stats.total} TOTAL CLASHES
+               </div>
             </div>
           </div>
         </Section>
@@ -205,9 +217,7 @@ const TeamSelector = ({ value, onChange, other, accent, isMobile }: { value: str
     <div className={`rounded-2xl bg-card border border-border ring-4 ${ringClass} p-3 md:p-4 transition-all w-full`}
          style={{ borderColor: team.color + "40" }}>
       <div className="flex items-center gap-3">
-        <div className="h-10 w-10 md:h-14 md:w-14 rounded-full grid place-items-center font-black text-white text-base md:text-lg shrink-0 shadow-lg" style={{ background: team.color }}>
-          {team.short.slice(0, 2)}
-        </div>
+        <TeamBadge code={value} size={isMobile ? 40 : 56} />
         <div className="flex-1 min-w-0">
           <select
             value={value}
@@ -218,7 +228,7 @@ const TeamSelector = ({ value, onChange, other, accent, isMobile }: { value: str
               <option key={t.code} value={t.code} className="bg-card">{t.name}</option>
             ))}
           </select>
-          <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold">{team.titles} titles • {team.totalWins} wins</div>
+          <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold">{team.titles} {team.titles === 1 ? 'title' : 'titles'} • {team.totalWins} wins</div>
         </div>
       </div>
     </div>

@@ -86,7 +86,16 @@ const Index = () => {
           <main className="flex-1 min-w-0 p-4 lg:p-6 space-y-6 pb-24 md:pb-6">
             {/* HERO */}
             <section className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-glass border-primary/20 p-6 lg:p-10">
-              <div className="absolute inset-0 bg-pitch-pattern opacity-40 pointer-events-none" />
+              <div className="absolute inset-0 opacity-[0.04] pointer-events-none overflow-hidden">
+                <svg viewBox="0 0 1000 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute bottom-0 w-full">
+                  <path d="M0 400C150 340 350 310 500 310C650 310 850 340 1000 400H0Z" fill="white"/>
+                  <path d="M480 310V280H520V310H480Z" fill="white"/>
+                  <path d="M100 360L120 180L160 330" stroke="white" strokeWidth="4"/>
+                  <path d="M900 360L880 180L840 330" stroke="white" strokeWidth="4"/>
+                  <circle cx="120" cy="180" r="10" fill="white"/>
+                  <circle cx="880" cy="180" r="10" fill="white"/>
+                </svg>
+              </div>
               <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
               
               <div className="relative">
@@ -114,16 +123,16 @@ const Index = () => {
 
                 <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 lg:gap-4">
                   <KpiCard icon="🏏" label="Total Matches" value={KPIS.totalMatches} accent="orange" delay={0.0}
-                    context="From 59 in 2008 to 74 in 2024 — IPL has nearly doubled in scale." />
-                  <KpiCard icon="🏆" label="Total Seasons" value={KPIS.totalSeasons} accent="blue" delay={0.05}
-                    context="17 seasons of evolution, from Tendulkar's MI to Hardik's GT." contextLabel="2008–24" />
+                    context="From 59 in 2008 to 74 in 2025 — IPL has reached record scale." />
+                  <KpiCard icon="🏆" label="Total Seasons" value={KPIS.totalSeasons} accent="gold" delay={0.05}
+                    context="18 seasons of evolution, from Tendulkar's MI to RCB's 2025 glory." contextLabel="2008–25" />
                   <KpiCard icon="6️⃣" label="Total Sixes" value={KPIS.totalSixes} accent="purple" delay={0.10}
-                    context="Gayle owns 357 of these — the maximum machine." />
-                  <KpiCard icon="🎯" label="Highest Score" value={264} rawText="264" accent="green" delay={0.15}
-                    context={<>RCB vs PWI, 2013 — Gayle's 175* was the spine.</>} contextLabel="One innings" />
-                  <KpiCard icon="👑" label="Most Titles" value={5} rawText="5" accent="gold" delay={0.20}
+                    context="Gayle owns 357 of these — the ultimate maximum machine." />
+                  <KpiCard icon="🎯" label="Highest Score" value={287} rawText="287" accent="green" delay={0.15}
+                    context={<>SRH vs RCB, 2024 — A historic onslaught of 287/3.</>} contextLabel="One innings" />
+                  <KpiCard icon="👑" label="Most Titles" value={5} rawText="5" accent="pink" delay={0.20}
                     context="MI & CSK lead the table with 5 titles each. RCB joined the list in 2025." contextLabel="MI & CSK" />
-                  <KpiCard icon="⚡" label="Most Runs" value={KPIS.mostRuns.runs} accent="pink" delay={0.25}
+                  <KpiCard icon="⚡" label="Most Runs" value={KPIS.mostRuns.runs} accent="cyan" delay={0.25}
                     context="Virat Kohli — RCB's one-club legend, 8,100+ runs and counting." contextLabel="V. Kohli" />
                 </div>
               </div>
@@ -133,10 +142,10 @@ const Index = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={tab}
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               >
                 <Suspense fallback={<TabSkeleton />}>
                   {tab === "overview"  && <OverviewTab />}
@@ -208,10 +217,10 @@ const FilterPill = ({ label, onDismiss }: { label: string; onDismiss: () => void
 
 const TabSkeleton = () => (
   <div className="space-y-4">
-    <div className="h-72 rounded-2xl bg-card border border-border animate-pulse" />
+    <div className="h-72 rounded-2xl bg-white/5 border border-white/10 shimmer" />
     <div className="grid md:grid-cols-2 gap-4">
-      <div className="h-60 rounded-2xl bg-card border border-border animate-pulse" />
-      <div className="h-60 rounded-2xl bg-card border border-border animate-pulse" />
+      <div className="h-60 rounded-2xl bg-white/5 border border-white/10 shimmer" />
+      <div className="h-60 rounded-2xl bg-white/5 border border-white/10 shimmer" />
     </div>
   </div>
 );

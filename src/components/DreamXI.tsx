@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Plus, X, Share2, RotateCcw, Check, Users, ShieldCheck } from "lucide-react";
+import { TeamBadge } from "@/components/TeamBadge";
 import { toast } from "sonner";
 
 interface Player {
@@ -19,39 +20,39 @@ interface Player {
 
 const allPlayers: Player[] = [
   // BATSMEN
-  { id:1, name:"Virat Kohli", team:"RCB", role:"Batsman", rating:95, runs:8100, avg:37.2, sr:130, color:"#EC1C24" },
-  { id:2, name:"Rohit Sharma", team:"MI", role:"Batsman", rating:92, runs:6211, avg:29.8, sr:130, color:"#004BA0" },
-  { id:3, name:"David Warner", team:"SRH", role:"Batsman", rating:91, runs:6564, avg:41.9, sr:140, color:"#F7A721" },
-  { id:4, name:"Shikhar Dhawan", team:"DC", role:"Batsman", rating:88, runs:6769, avg:34.9, sr:127, color:"#0078BC" },
-  { id:5, name:"AB de Villiers", team:"RCB", role:"Batsman", rating:97, runs:5162, avg:39.7, sr:151, color:"#EC1C24" },
-  { id:6, name:"Chris Gayle", team:"RCB", role:"Batsman", rating:93, runs:4965, avg:40.5, sr:148, color:"#EC1C24" },
-  { id:7, name:"Jos Buttler", team:"RR", role:"Batsman", rating:90, runs:3582, avg:46.5, sr:149, color:"#EA1A85" },
-  { id:8, name:"KL Rahul", team:"LSG", role:"Batsman", rating:89, runs:4863, avg:47.2, sr:136, color:"#A2EDFF" },
-  { id:9, name:"Suresh Raina", team:"CSK", role:"Batsman", rating:87, runs:5528, avg:32.5, sr:136, color:"#F9CD05" },
-  { id:10, name:"Faf du Plessis", team:"RCB", role:"Batsman", rating:85, runs:3500, avg:35.0, sr:135, color:"#EC1C24" },
+  { id:1, name:"Virat Kohli", team:"RCB", role:"Batsman", rating:95, runs:8100, avg:37.2, sr:130, color:"#E53935" },
+  { id:2, name:"Rohit Sharma", team:"MI", role:"Batsman", rating:92, runs:6211, avg:29.8, sr:130, color:"#1E88E5" },
+  { id:3, name:"David Warner", team:"SRH", role:"Batsman", rating:91, runs:6564, avg:41.9, sr:140, color:"#FB8C00" },
+  { id:4, name:"Shikhar Dhawan", team:"DC", role:"Batsman", rating:88, runs:6769, avg:34.9, sr:127, color:"#1565C0" },
+  { id:5, name:"AB de Villiers", team:"RCB", role:"Batsman", rating:97, runs:5162, avg:39.7, sr:151, color:"#E53935" },
+  { id:6, name:"Chris Gayle", team:"RCB", role:"Batsman", rating:93, runs:4965, avg:40.5, sr:148, color:"#E53935" },
+  { id:7, name:"Jos Buttler", team:"RR", role:"Batsman", rating:90, runs:3582, avg:46.5, sr:149, color:"#E91E8C" },
+  { id:8, name:"KL Rahul", team:"LSG", role:"Batsman", rating:89, runs:4863, avg:47.2, sr:136, color:"#26A69A" },
+  { id:9, name:"Suresh Raina", team:"CSK", role:"Batsman", rating:87, runs:5528, avg:32.5, sr:136, color:"#FDD835" },
+  { id:10, name:"Faf du Plessis", team:"RCB", role:"Batsman", rating:85, runs:3500, avg:35.0, sr:135, color:"#E53935" },
 
   // WICKET KEEPERS
-  { id:11, name:"MS Dhoni", team:"CSK", role:"Wicketkeeper", rating:96, runs:5243, avg:38.1, sr:135, color:"#F9CD05" },
-  { id:12, name:"Rishabh Pant", team:"DC", role:"Wicketkeeper", rating:88, runs:3284, avg:35.0, sr:148, color:"#0078BC" },
-  { id:13, name:"Ishan Kishan", team:"MI", role:"Wicketkeeper", rating:82, runs:2644, avg:30.0, sr:136, color:"#004BA0" },
-  { id:14, name:"Sanju Samson", team:"RR", role:"Wicketkeeper", rating:84, runs:3321, avg:28.0, sr:139, color:"#EA1A85" },
+  { id:11, name:"MS Dhoni", team:"CSK", role:"Wicketkeeper", rating:96, runs:5243, avg:38.1, sr:135, color:"#FDD835" },
+  { id:12, name:"Rishabh Pant", team:"DC", role:"Wicketkeeper", rating:88, runs:3284, avg:35.0, sr:148, color:"#1565C0" },
+  { id:13, name:"Ishan Kishan", team:"MI", role:"Wicketkeeper", rating:82, runs:2644, avg:30.0, sr:136, color:"#1E88E5" },
+  { id:14, name:"Sanju Samson", team:"RR", role:"Wicketkeeper", rating:84, runs:3321, avg:28.0, sr:139, color:"#E91E8C" },
 
   // ALL ROUNDERS
-  { id:15, name:"Hardik Pandya", team:"MI", role:"Allrounder", rating:89, runs:2670, avg:28.0, sr:145, color:"#004BA0" },
-  { id:16, name:"Andre Russell", team:"KKR", role:"Allrounder", rating:92, runs:2626, avg:30.0, sr:178, color:"#3B1F76" },
-  { id:17, name:"Kieron Pollard", team:"MI", role:"Allrounder", rating:88, runs:3412, avg:28.5, sr:147, color:"#004BA0" },
-  { id:18, name:"Sunil Narine", team:"KKR", role:"Allrounder", rating:87, runs:1500, avg:20.0, sr:160, color:"#3B1F76" },
-  { id:19, name:"Krunal Pandya", team:"RCB", role:"Allrounder", rating:80, runs:1800, avg:22.0, sr:130, color:"#EC1C24" },
+  { id:15, name:"Hardik Pandya", team:"MI", role:"Allrounder", rating:89, runs:2670, avg:28.0, sr:145, color:"#1E88E5" },
+  { id:16, name:"Andre Russell", team:"KKR", role:"Allrounder", rating:92, runs:2626, avg:30.0, sr:178, color:"#7B1FA2" },
+  { id:17, name:"Kieron Pollard", team:"MI", role:"Allrounder", rating:88, runs:3412, avg:28.5, sr:147, color:"#1E88E5" },
+  { id:18, name:"Sunil Narine", team:"KKR", role:"Allrounder", rating:87, runs:1500, avg:20.0, sr:160, color:"#7B1FA2" },
+  { id:19, name:"Krunal Pandya", team:"RCB", role:"Allrounder", rating:80, runs:1800, avg:22.0, sr:130, color:"#E53935" },
 
   // BOWLERS
-  { id:20, name:"Lasith Malinga", team:"MI", role:"Bowler", rating:94, wickets:170, economy:7.14, avg:19.8, color:"#004BA0" },
-  { id:21, name:"Jasprit Bumrah", team:"MI", role:"Bowler", rating:95, wickets:159, economy:7.36, avg:21.2, color:"#004BA0" },
-  { id:22, name:"Yuzvendra Chahal", team:"RR", role:"Bowler", rating:91, wickets:205, economy:7.59, avg:21.4, color:"#EA1A85" },
-  { id:23, name:"Rashid Khan", team:"GT", role:"Bowler", rating:93, wickets:142, economy:6.33, avg:18.7, color:"#1B2133" },
-  { id:24, name:"Dwayne Bravo", team:"CSK", role:"Bowler", rating:88, wickets:183, economy:8.38, avg:24.3, color:"#F9CD05" },
-  { id:25, name:"Bhuvneshwar Kumar", team:"SRH", role:"Bowler", rating:87, wickets:181, economy:7.32, avg:23.1, color:"#F7A721" },
-  { id:26, name:"Mohammed Shami", team:"GT", role:"Bowler", rating:86, wickets:115, economy:8.03, avg:24.6, color:"#1B2133" },
-  { id:27, name:"Amit Mishra", team:"DC", role:"Bowler", rating:83, wickets:166, economy:7.35, avg:23.2, color:"#0078BC" },
+  { id:20, name:"Lasith Malinga", team:"MI", role:"Bowler", rating:94, wickets:170, economy:7.14, avg:19.8, color:"#1E88E5" },
+  { id:21, name:"Jasprit Bumrah", team:"MI", role:"Bowler", rating:95, wickets:159, economy:7.36, avg:21.2, color:"#1E88E5" },
+  { id:22, name:"Yuzvendra Chahal", team:"RR", role:"Bowler", rating:91, wickets:205, economy:7.59, avg:21.4, color:"#E91E8C" },
+  { id:23, name:"Rashid Khan", team:"GT", role:"Bowler", rating:93, wickets:142, economy:6.33, avg:18.7, color:"#00ACC1" },
+  { id:24, name:"Dwayne Bravo", team:"CSK", role:"Bowler", rating:88, wickets:183, economy:8.38, avg:24.3, color:"#FDD835" },
+  { id:25, name:"Bhuvneshwar Kumar", team:"SRH", role:"Bowler", rating:87, wickets:181, economy:7.32, avg:23.1, color:"#FB8C00" },
+  { id:26, name:"Mohammed Shami", team:"GT", role:"Bowler", rating:86, wickets:115, economy:8.03, avg:24.6, color:"#00ACC1" },
+  { id:27, name:"Amit Mishra", team:"DC", role:"Bowler", rating:83, wickets:166, economy:7.35, avg:23.2, color:"#1565C0" },
 ];
 
 const QUOTAS = {
@@ -214,9 +215,7 @@ export const DreamXI = () => {
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="h-8 w-8 rounded-full grid place-items-center font-black text-white text-[10px]" style={{ backgroundColor: p.color }}>
-                      {p.name.split(" ").map(n => n[0]).join("")}
-                    </div>
+                    <TeamBadge code={p.team} />
                     <div>
                       <div className="text-xs font-bold leading-none">{p.name}</div>
                       <div className="flex items-center gap-2 mt-1">

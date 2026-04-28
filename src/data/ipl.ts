@@ -3,7 +3,7 @@
 
 export type TeamCode =
   | "MI" | "CSK" | "KKR" | "RCB" | "SRH" | "DC" | "RR" | "PBKS" | "GT" | "LSG"
-  | "DCH" | "PWI" | "GL" | "RPS" | "KTK";
+  | "DCH" | "RPS";
 
 export interface Team {
   code: TeamCode;
@@ -13,24 +13,22 @@ export interface Team {
   city: string;
   titles: number;
   totalWins: number;
+  fullName: string;
 }
 
 export const TEAMS: Team[] = [
-  { code: "MI",   name: "Mumbai Indians",        short: "MI",   color: "#004BA0", city: "Mumbai",     titles: 5, totalWins: 144 },
-  { code: "CSK",  name: "Chennai Super Kings",   short: "CSK",  color: "#F9CD05", city: "Chennai",    titles: 5, totalWins: 138 },
-  { code: "KKR",  name: "Kolkata Knight Riders", short: "KKR",  color: "#3B1F76", city: "Kolkata",    titles: 3, totalWins: 124 },
-  { code: "RCB",  name: "Royal Challengers Bengaluru", short: "RCB",  color: "#EC1C24", city: "Bengaluru",  titles: 1, totalWins: 135 },
-  { code: "SRH",  name: "Sunrisers Hyderabad",   short: "SRH",  color: "#F7A721", city: "Hyderabad",  titles: 1, totalWins: 88  },
-  { code: "DC",   name: "Delhi Capitals",        short: "DC",   color: "#0078BC", city: "Delhi",      titles: 0, totalWins: 109 },
-  { code: "RR",   name: "Rajasthan Royals",      short: "RR",   color: "#EA1A85", city: "Jaipur",     titles: 1, totalWins: 112 },
-  { code: "PBKS", name: "Punjab Kings",          short: "PBKS", color: "#ED1B24", city: "Mohali",     titles: 0, totalWins: 107 },
-  { code: "GT",   name: "Gujarat Titans",        short: "GT",   color: "#1B2133", city: "Ahmedabad",  titles: 1, totalWins: 28  },
-  { code: "LSG",  name: "Lucknow Super Giants",  short: "LSG",  color: "#A2EDFF", city: "Lucknow",    titles: 0, totalWins: 24  },
-  { code: "DCH",  name: "Deccan Chargers",       short: "DCH",  color: "#334155", city: "Hyderabad",  titles: 1, totalWins: 29  },
-  { code: "RPS",  name: "Rising Pune Supergiant", short: "RPS",  color: "#D111D1", city: "Pune",       titles: 0, totalWins: 15  },
-  { code: "GL",   name: "Gujarat Lions",         short: "GL",   color: "#E63946", city: "Rajkot",     titles: 0, totalWins: 13  },
-  { code: "PWI",  name: "Pune Warriors India",   short: "PWI",  color: "#2B2D42", city: "Pune",       titles: 0, totalWins: 12  },
-  { code: "KTK",  name: "Kochi Tuskers Kerala",  short: "KTK",  color: "#8338EC", city: "Kochi",      titles: 0, totalWins: 6   },
+  { code: "MI",   name: "Mumbai Indians",        short: "MI",   color: "#1E88E5", city: "Mumbai",     titles: 5, totalWins: 144, fullName: "Mumbai Indians" },
+  { code: "CSK",  name: "Chennai Super Kings",   short: "CSK",  color: "#FDD835", city: "Chennai",    titles: 5, totalWins: 138, fullName: "Chennai Super Kings" },
+  { code: "KKR",  name: "Kolkata Knight Riders", short: "KKR",  color: "#7B1FA2", city: "Kolkata",    titles: 3, totalWins: 124, fullName: "Kolkata Knight Riders" },
+  { code: "RCB",  name: "Royal Challengers Bengaluru", short: "RCB",  color: "#E53935", city: "Bengaluru",  titles: 1, totalWins: 135, fullName: "Royal Challengers Bengaluru" },
+  { code: "SRH",  name: "Sunrisers Hyderabad",   short: "SRH",  color: "#FB8C00", city: "Hyderabad",  titles: 1, totalWins: 88,  fullName: "Sunrisers Hyderabad" },
+  { code: "DC",   name: "Delhi Capitals",        short: "DC",   color: "#1565C0", city: "Delhi",      titles: 0, totalWins: 109, fullName: "Delhi Capitals" },
+  { code: "RR",   name: "Rajasthan Royals",      short: "RR",   color: "#E91E8C", city: "Jaipur",     titles: 1, totalWins: 112, fullName: "Rajasthan Royals" },
+  { code: "PBKS", name: "Punjab Kings",          short: "PBKS", color: "#EF5350", city: "Mohali",     titles: 0, totalWins: 107, fullName: "Punjab Kings" },
+  { code: "GT",   name: "Gujarat Titans",        short: "GT",   color: "#00ACC1", city: "Ahmedabad",  titles: 1, totalWins: 28,  fullName: "Gujarat Titans" },
+  { code: "LSG",  name: "Lucknow Super Giants",  short: "LSG",  color: "#26A69A", city: "Lucknow",    titles: 0, totalWins: 24,  fullName: "Lucknow Super Giants" },
+  { code: "DCH",  name: "Deccan Chargers",       short: "DCH",  color: "#78909C", city: "Hyderabad",  titles: 1, totalWins: 29,  fullName: "Deccan Chargers" },
+  { code: "RPS",  name: "Rising Pune Supergiant", short: "RPS",  color: "#D111D1", city: "Pune",       titles: 0, totalWins: 15,  fullName: "Rising Pune Supergiant" },
 ];
 
 export const TEAM_BY_CODE: Record<string, Team> = TEAMS.reduce(
@@ -230,7 +228,7 @@ export const VENUES: Venue[] = [
   { name: "Wankhede Stadium",                city: "Mumbai",     matches: 109, avgScore: 175, capacity: 33000, batFirstWinPct: 58, tossWinPct: 51 },
   { name: "Eden Gardens",                    city: "Kolkata",    matches: 92,  avgScore: 168, capacity: 68000, batFirstWinPct: 47, tossWinPct: 52 },
   { name: "M Chinnaswamy Stadium",           city: "Bengaluru",  matches: 89,  avgScore: 178, capacity: 40000, batFirstWinPct: 56, tossWinPct: 49 },
-  { name: "Feroz Shah Kotla",                city: "Delhi",      matches: 81,  avgScore: 162, capacity: 41820, batFirstWinPct: 44, tossWinPct: 53 },
+  { name: "Arun Jaitley Stadium",            city: "Delhi",      matches: 81,  avgScore: 162, capacity: 41820, batFirstWinPct: 44, tossWinPct: 53 },
   { name: "MA Chidambaram Stadium",          city: "Chennai",    matches: 85,  avgScore: 159, capacity: 38000, batFirstWinPct: 53, tossWinPct: 50 },
   { name: "Rajiv Gandhi Intl Stadium",       city: "Hyderabad",  matches: 77,  avgScore: 165, capacity: 55000, batFirstWinPct: 50, tossWinPct: 51 },
   { name: "Sawai Mansingh Stadium",          city: "Jaipur",     matches: 58,  avgScore: 161, capacity: 30000, batFirstWinPct: 49, tossWinPct: 47 },

@@ -4,6 +4,7 @@ import {
   ZAxis, BarChart, Bar, Cell, ReferenceArea,
 } from "recharts";
 import { BOWLERS, PURPLE_CAP, TEAM_BY_CODE } from "@/data/ipl";
+import { TeamBadge } from "@/components/TeamBadge";
 import { useMemo, useState, useEffect } from "react";
 
 export const BowlingTab = () => {
@@ -81,17 +82,15 @@ export const BowlingTab = () => {
                     const b = payload[0].payload;
                     const team = TEAM_BY_CODE[b.team];
                     return (
-                      <div className="rounded-xl bg-card/95 backdrop-blur border border-border shadow-card p-4 min-w-[200px]" style={{ borderLeft: `3px solid ${team.color}` }}>
+                      <div className="rounded-[12px] bg-[#0D0D1A]/95 backdrop-blur-[10px] border border-[rgba(255,107,26,0.4)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] p-[12px_16px] min-w-[220px]" style={{ borderLeft: `3px solid ${team.color}` }}>
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-full grid place-items-center font-black text-white" style={{ background: team.color }}>
-                            {b.short.slice(0, 2)}
-                          </div>
+                          <TeamBadge code={b.team} />
                           <div>
-                            <div className="font-bold text-sm">{b.name}</div>
-                            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">{team.name} • {b.type}</div>
+                            <div className="font-bold text-sm text-white">{b.name}</div>
+                            <div className="text-[10px] text-white/50 uppercase tracking-[0.2em] font-sans">{team.name} • {b.type}</div>
                           </div>
                         </div>
-                        <div className="grid grid-cols-3 gap-2 mt-3 text-center">
+                        <div className="grid grid-cols-3 gap-2 mt-4 text-center">
                           <Mini label="Wickets" value={b.wickets} />
                           <Mini label="Economy" value={b.economy} />
                           <Mini label="Matches" value={b.matches} />
@@ -131,21 +130,49 @@ export const BowlingTab = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
+          <div className="space-y-2 mt-4 px-2">
+            {topWickets.slice(0, 5).map((b, i) => (
+              <div key={b.short} className="flex items-center justify-between text-[11px]">
+                <div className="flex items-center gap-2">
+                   <span className="text-muted-foreground w-3">{i+1}</span>
+                   <span className="font-bold">{b.name.length > 15 ? `${b.name.split(' ')[0][0]}. ${b.name.split(' ').slice(1).join(' ')}` : b.name}</span>
+                </div>
+                <TeamBadge code={b.team} className="w-7 h-7 text-[9px]" />
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section title="💎 Economy Leaders" subtitle="min 50 wickets">
-          <div className="chart-wrapper">
-            <ResponsiveContainer width="100%" height={isMobile ? 320 : 360}>
-              <BarChart data={bestEcon} layout="vertical" margin={{ left: 0, right: 30 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" horizontal={false} />
-                <XAxis type="number" domain={[6, 9]} stroke="hsl(var(--muted-foreground))" fontSize={10} />
-                <YAxis type="category" dataKey="short" stroke="hsl(var(--muted-foreground))" fontSize={10} width={60} />
-                <Tooltip trigger="click" />
-                <Bar dataKey="economy" radius={[0, 6, 6, 0]} animationDuration={isMobile ? 400 : 1200}>
-                  {bestEcon.map((b) => <Cell key={b.short} fill={TEAM_BY_CODE[b.team].color} />)}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="chart-wrapper h-[360px] flex flex-col justify-center">
+            <div className="flex justify-between items-center mb-4 px-4 text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+              <span>← Better Economy</span>
+              <span>Bowling Control</span>
+            </div>
+            <div className="space-y-4 px-4 overflow-y-auto scrollbar-hide">
+              {bestEcon.map((b, i) => {
+                const team = TEAM_BY_CODE[b.team];
+                const dotColor = b.economy < 7.0 ? "#00D9A3" : b.economy <= 7.5 ? "#FF6B1A" : "#FF4757";
+                return (
+                  <div key={b.short} className="flex items-center gap-4">
+                    <div className="w-28 text-[10px] md:text-xs font-bold truncate">
+                      {b.name.length > 15 ? `${b.name.split(' ')[0][0]}. ${b.name.split(' ').slice(1).join(' ')}` : b.name}
+                    </div>
+                    <div className="flex-1 h-[2px] bg-white/5 relative">
+                      <motion.div 
+                        initial={{ left: "100%" }}
+                        whileInView={{ left: `${((b.economy - 6) / 3) * 100}%` }}
+                        viewport={{ once: true }}
+                        className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-background z-10"
+                        style={{ backgroundColor: dotColor, boxShadow: `0 0 10px ${dotColor}` }}
+                      />
+                      <div className="absolute top-1/2 -translate-y-1/2 left-0 h-full bg-gradient-to-r from-transparent to-white/10" style={{ width: `${((b.economy - 6) / 3) * 100}%` }} />
+                    </div>
+                    <div className="w-10 text-right font-mono text-xs font-bold" style={{ color: dotColor }}>{b.economy}</div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </Section>
       </div>
@@ -172,11 +199,13 @@ export const BowlingTab = () => {
                 return (
                   <tr key={r.year} className={`border-b border-border/50 transition-colors hover:bg-purple/5 ${i % 2 === 0 ? "bg-surface/30" : ""}`}>
                     <td className="p-2 font-mono text-purple">{r.year}</td>
-                    <td className="p-2 font-semibold truncate max-w-[120px]">{r.player}</td>
+                    <td className="p-2 font-semibold truncate max-w-[140px]">
+                      {r.player.length > 15 ? `${r.player.split(' ')[0][0]}. ${r.player.split(' ').slice(1).join(' ')}` : r.player}
+                    </td>
                     <td className="p-2 text-right font-mono font-bold text-gradient-blue">{r.wickets}</td>
                     {!isMobile && (
                       <>
-                        <td className="p-2"><span className="text-xs px-2 py-0.5 rounded font-bold" style={{ background: (team?.color ?? "#888") + "30", color: team?.color ?? "#888" }}>{r.team}</span></td>
+                        <td className="p-2"><TeamBadge code={r.team} className="w-10" /></td>
                         <td className="p-2 text-right font-mono">{r.economy}</td>
                       </>
                     )}

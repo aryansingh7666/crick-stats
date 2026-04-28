@@ -18,34 +18,47 @@ const NAV_ITEMS: { id: TabId; label: string; icon: any }[] = [
 
 export const BottomNav = ({ active, onChange }: Props) => {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 h-[64px] bg-[#0F1520] border-t border-[#1E2D45] z-50 px-2 shadow-[0_-4px_20px_rgba(0,0,0,0.4)]">
-      <div className="flex items-center justify-between h-full max-w-md mx-auto">
-        {NAV_ITEMS.map((item) => {
-          const Icon = item.icon;
-          const isActive = active === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => onChange(item.id)}
-              className="flex flex-col items-center justify-center flex-1 transition-all duration-300"
-            >
-              <motion.div
-                animate={{ scale: isActive ? 1.15 : 1 }}
-                className={isActive ? "text-[#FF6B1A]" : "text-[#3D5470]"}
+    <>
+      {/* Subtle gradient above nav */}
+      <div className="md:hidden fixed bottom-[64px] left-0 right-0 h-12 bg-gradient-to-t from-[#0D0D1A]/80 to-transparent pointer-events-none z-40" />
+      
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 h-[64px] bg-[#0D0D1A]/95 backdrop-blur-[20px] border-t border-white/10 z-50 px-2">
+        <div className="flex items-center justify-between h-full max-w-md mx-auto">
+          {NAV_ITEMS.map((item) => {
+            const Icon = item.icon;
+            const isActive = active === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onChange(item.id)}
+                className="flex flex-col items-center justify-center flex-1 transition-all duration-300 relative h-full"
               >
-                <Icon size={22} />
-              </motion.div>
-              <span 
-                className={`text-[9px] mt-1 font-bold uppercase tracking-tighter ${
-                  isActive ? "text-[#FF6B1A]" : "text-[#3D5470]"
-                }`}
-              >
-                {item.label}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </nav>
+                <motion.div
+                  animate={{ scale: isActive ? 1.1 : 1, y: isActive ? -2 : 0 }}
+                  className={isActive ? "text-[#FF6B1A] drop-shadow-[0_0_8px_rgba(255,107,26,0.6)]" : "text-white/30"}
+                >
+                  <Icon size={20} />
+                </motion.div>
+                
+                {isActive && (
+                  <motion.div 
+                    layoutId="activeDot"
+                    className="absolute bottom-2 w-1 h-1 bg-[#FF6B1A] rounded-full shadow-[0_0_10px_#FF6B1A]" 
+                  />
+                )}
+
+                <span 
+                  className={`text-[8px] mt-1 font-bold uppercase tracking-widest ${
+                    isActive ? "text-[#FF6B1A]" : "text-white/30"
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </>
   );
 };

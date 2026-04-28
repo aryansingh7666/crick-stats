@@ -5,6 +5,7 @@ import {
 } from "recharts";
 import { CHAMPIONS, SEASON_MATCHES, TEAM_BY_CODE, TEAMS, TOSS_IMPACT } from "@/data/ipl";
 import { ChartTooltip } from "@/components/ChartTooltip";
+import { TeamBadge } from "@/components/TeamBadge";
 import { Trophy, Zap, ChevronRight } from "lucide-react";
 import { useState, useMemo, useEffect } from "react";
 
@@ -19,10 +20,20 @@ export const OverviewTab = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const winsByTeam = useMemo(
-    () => [...TEAMS].sort((a, b) => b.totalWins - a.totalWins),
-    [],
-  );
+  const dynastyData = [
+    { team: "MI", wins: 144, color: "#1E88E5", fullName: "Mumbai Indians" },
+    { team: "CSK", wins: 138, color: "#FDD835", fullName: "Chennai Super Kings" },
+    { team: "RCB", wins: 118, color: "#E53935", fullName: "Royal Challengers Bengaluru" },
+    { team: "KKR", wins: 112, color: "#7B1FA2", fullName: "Kolkata Knight Riders" },
+    { team: "SRH", wins: 98, color: "#FB8C00", fullName: "Sunrisers Hyderabad" },
+    { team: "DC", wins: 95, color: "#1565C0", fullName: "Delhi Capitals" },
+    { team: "RR", wins: 88, color: "#E91E8C", fullName: "Rajasthan Royals" },
+    { team: "PBKS", wins: 85, color: "#EF5350", fullName: "Punjab Kings" },
+    { team: "GT", wins: 42, color: "#00ACC1", fullName: "Gujarat Titans" },
+    { team: "LSG", wins: 38, color: "#26A69A", fullName: "Lucknow Super Giants" },
+    { team: "DCH", wins: 28, color: "#78909C", fullName: "Deccan Chargers" },
+  ].sort((a, b) => b.wins - a.wins);
+
   const titleData = useMemo(
     () => TEAMS.filter((t) => t.titles > 0).sort((a, b) => b.titles - a.titles),
     [],
@@ -32,7 +43,7 @@ export const OverviewTab = () => {
   return (
     <div className="space-y-6">
       {/* Championship timeline */}
-      <Section title="🏆 Championship Timeline" subtitle="17 years of glory">
+      <Section title="🏆 Championship Timeline" subtitle="18 years of glory">
         {isMobile ? (
           <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 scrollbar-hide">
             {[...CHAMPIONS].reverse().map((c) => {
@@ -101,7 +112,7 @@ export const OverviewTab = () => {
                       )}
                     </div>
                     <div className="mt-2 font-mono text-[10px] text-muted-foreground">{c.year}</div>
-                    <div className="text-[10px] font-bold" style={{ color: isRCB2025 ? "#EC1C24" : team.color }}>{c.champion}</div>
+                    <TeamBadge code={c.champion} className="mt-1" />
                   </motion.button>
                 );
               })}
@@ -132,13 +143,13 @@ export const OverviewTab = () => {
         <Section title="👑 Dynasty Chart" subtitle="All-time wins by franchise">
           <div className="chart-wrapper">
             <ResponsiveContainer width="100%" height={isMobile ? 320 : 380}>
-              <BarChart data={winsByTeam} layout="vertical" margin={{ left: 0, right: 30 }}>
+              <BarChart data={dynastyData} layout="vertical" margin={{ left: 0, right: 30 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" horizontal={false} />
                 <XAxis type="number" stroke="hsl(var(--muted-foreground))" fontSize={isMobile ? 10 : 11} />
-                <YAxis type="category" dataKey="short" stroke="hsl(var(--muted-foreground))" fontSize={isMobile ? 10 : 12} width={40} />
+                <YAxis type="category" dataKey="team" stroke="hsl(var(--muted-foreground))" fontSize={isMobile ? 10 : 12} width={40} />
                 <Tooltip content={<ChartTooltip />} cursor={{ fill: "hsl(var(--card-hover) / 0.5)" }} trigger="click" />
-                <Bar dataKey="totalWins" radius={[0, 8, 8, 0]} animationDuration={isMobile ? 400 : 1200}>
-                  {winsByTeam.map((t) => <Cell key={t.code} fill={t.color} />)}
+                <Bar dataKey="wins" radius={[0, 8, 8, 0]} animationDuration={isMobile ? 400 : 1200}>
+                  {dynastyData.map((t) => <Cell key={t.team} fill={t.color} />)}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
@@ -160,7 +171,7 @@ export const OverviewTab = () => {
                       style={{ backgroundColor: t.color }} 
                     />
                   </div>
-                  <div className="w-12 text-right text-xs font-black">{t.titles} TITLES</div>
+                  <div className="w-12 text-right text-xs font-black">{t.titles} {t.titles === 1 ? 'TITLE' : 'TITLES'}</div>
                 </div>
               ))}
             </div>
@@ -185,7 +196,7 @@ export const OverviewTab = () => {
               </ResponsiveContainer>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
                 <Trophy className="inline h-10 w-10 text-gold" />
-                <div className="text-xs text-muted-foreground mt-1 uppercase tracking-widest">18 Titles</div>
+                <div className="text-xs text-muted-foreground mt-1 uppercase tracking-widest">18 Seasons</div>
               </div>
             </div>
           )}
@@ -195,8 +206,8 @@ export const OverviewTab = () => {
       {/* Season growth + Toss impact */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Section title="📈 Season Growth" subtitle="Matches played per year">
-          <div className="chart-wrapper">
-            <ResponsiveContainer width="100%" height={isMobile ? 280 : 300}>
+          <div className="chart-wrapper" style={{ height: '280px', paddingBottom: '20px', overflow: 'visible' }}>
+            <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={SEASON_MATCHES}>
                 <defs>
                   <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">

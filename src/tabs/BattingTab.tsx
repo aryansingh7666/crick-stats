@@ -4,6 +4,7 @@ import {
   ZAxis, BarChart, Bar, Cell, RadialBarChart, RadialBar, PolarAngleAxis,
 } from "recharts";
 import { BATTERS, ORANGE_CAP, TEAM_BY_CODE } from "@/data/ipl";
+import { TeamBadge } from "@/components/TeamBadge";
 import { useMemo, useState, useEffect } from "react";
 
 export const BattingTab = () => {
@@ -105,17 +106,15 @@ export const BattingTab = () => {
                     setHovered(b);
                     const team = TEAM_BY_CODE[b.team];
                     return (
-                      <div className="rounded-xl bg-card/95 backdrop-blur border border-border shadow-card p-4 min-w-[220px]" style={{ borderLeft: `3px solid ${team.color}` }}>
+                      <div className="rounded-[12px] bg-[#0D0D1A]/95 backdrop-blur-[10px] border border-[rgba(255,107,26,0.4)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] p-[12px_16px] min-w-[220px]" style={{ borderLeft: `3px solid ${team.color}` }}>
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-full grid place-items-center font-black text-white" style={{ background: team.color }}>
-                            {b.short.slice(0, 2)}
-                          </div>
+                          <TeamBadge code={b.team} />
                           <div>
-                            <div className="font-bold text-sm">{b.name}</div>
-                            <div className="text-[10px] text-muted-foreground uppercase tracking-wider">{team.name} • {b.seasons}</div>
+                            <div className="font-bold text-sm text-white">{b.name}</div>
+                            <div className="text-[10px] text-white/50 uppercase tracking-[0.2em] font-sans">{team.name} • {b.seasons}</div>
                           </div>
                         </div>
-                        <div className="grid grid-cols-3 gap-2 mt-3 text-center">
+                        <div className="grid grid-cols-3 gap-2 mt-4 text-center">
                           <Mini label="Runs" value={b.runs.toLocaleString("en-IN")} />
                           <Mini label="SR" value={b.sr.toFixed(0)} />
                           <Mini label="100s" value={b.hundreds} />
@@ -154,6 +153,17 @@ export const BattingTab = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
+          <div className="space-y-2 mt-4 px-2">
+            {topRuns.slice(0, 5).map((b, i) => (
+              <div key={b.short} className="flex items-center justify-between text-[11px]">
+                <div className="flex items-center gap-2">
+                   <span className="text-muted-foreground w-3">{i+1}</span>
+                   <span className="font-bold">{b.name.length > 15 ? `${b.name.split(' ')[0][0]}. ${b.name.split(' ').slice(1).join(' ')}` : b.name}</span>
+                </div>
+                <TeamBadge code={b.team} className="w-7 h-7 text-[9px]" />
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section title="6️⃣ Six Machines" subtitle="Most sixes — top 8">
@@ -170,15 +180,16 @@ export const BattingTab = () => {
           </div>
           <div className="flex flex-wrap justify-center gap-1.5 mt-2 text-[10px]">
             {topSixes.map((b) => (
-              <span key={b.short} className="px-1.5 py-0.5 rounded font-mono" style={{ background: TEAM_BY_CODE[b.team].color + "30", color: TEAM_BY_CODE[b.team].color }}>
-                {b.short} {b.sixes}
-              </span>
+              <div key={b.short} className="flex items-center gap-1">
+                <TeamBadge code={b.team} className="w-6 h-6 text-[8px]" />
+                <span className="font-mono text-white/60">{b.sixes}</span>
+              </div>
             ))}
           </div>
         </Section>
 
         <Section title="⚡ Strike Rate Leaders" subtitle="Highest SR (qualifier)">
-          <div className="space-y-2 max-h-[360px] overflow-y-auto pr-1">
+          <div className="space-y-2 max-h-[360px] overflow-y-auto pr-1 scrollbar-hide">
             {topSr.map((b, i) => (
               <motion.div
                 key={b.short}
@@ -188,9 +199,14 @@ export const BattingTab = () => {
                 viewport={{ once: true }}
                 className="flex items-center gap-3"
               >
-                <div className="text-xs text-muted-foreground w-4 text-right font-mono">{i + 1}</div>
-                <div className="text-xs font-semibold w-16 truncate">{b.short}</div>
-                <div className="flex-1 h-2 bg-card-hover rounded-full overflow-hidden">
+                <div className="text-[10px] text-muted-foreground w-4 text-right font-mono">{i + 1}</div>
+                <div className="flex items-center gap-2 w-32 md:w-40 truncate">
+                  <TeamBadge code={b.team} size={24} />
+                  <div className="text-[10px] md:text-[11px] font-bold">
+                    {b.name.length > 15 ? `${b.name.split(' ')[0][0]}. ${b.name.split(' ').slice(1).join(' ')}` : b.name}
+                  </div>
+                </div>
+                <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${(b.sr - 100) / 0.8}%` }}
@@ -200,7 +216,7 @@ export const BattingTab = () => {
                     style={{ background: srColor(b.sr) }}
                   />
                 </div>
-                <div className="font-mono text-xs font-bold w-10 text-right" style={{ color: srColor(b.sr) }}>
+                <div className="font-mono text-[10px] font-black w-10 text-right" style={{ color: srColor(b.sr) }}>
                   {b.sr}
                 </div>
               </motion.div>
@@ -233,11 +249,13 @@ export const BattingTab = () => {
                 return (
                   <tr key={r.year} className={`border-b border-border/50 transition-colors hover:bg-primary/5 ${i % 2 === 0 ? "bg-surface/30" : ""}`}>
                     <td className="p-2 font-mono text-primary">{r.year}</td>
-                    <td className="p-2 font-semibold truncate max-w-[120px]">{r.player}</td>
+                    <td className="p-2 font-semibold truncate max-w-[140px]">
+                      {r.player.length > 15 ? `${r.player.split(' ')[0][0]}. ${r.player.split(' ').slice(1).join(' ')}` : r.player}
+                    </td>
                     <td className="p-2 text-right font-mono font-bold text-gradient-orange">{r.runs}</td>
                     {!isMobile && (
                       <>
-                        <td className="p-2"><span className="text-xs px-2 py-0.5 rounded font-bold" style={{ background: team?.color + "30", color: team?.color }}>{r.team}</span></td>
+                        <td className="p-2"><TeamBadge code={r.team} className="w-10" /></td>
                         <td className="p-2 text-right font-mono">{r.sr}</td>
                         <td className="p-2 text-right font-mono">{r.matches}</td>
                       </>
